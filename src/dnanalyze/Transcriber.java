@@ -37,7 +37,6 @@ public class Transcriber
     public static String Transcribe(String dnaString)
     {
         String rnaString;
-        int aCount;
         ArrayList<String> codingSegments;
 
         final int numberOfAsToAddToCap = 100;
@@ -45,14 +44,11 @@ public class Transcriber
         // Step 1: Replace the T nucleotides with U
         rnaString = replaceChar(dnaString, 'T', 'U');
 
+        // TODO
         // Step 2:
 
-        // Step 3: Add 1 G nucleotides to the beginning and many A's to the end
-        rnaString = "G" + rnaString;
-        for (aCount = 0; aCount < numberOfAsToAddToCap; aCount++)
-        {
-            rnaString = rnaString + "A";
-        }
+        // Step 3: Add 1 G nucleotide to the beginning and many A's to the end
+        rnaString = "G" + rnaString + repeatString("A", numberOfAsToAddToCap);
 
         // TODO
         // Step 4: Noncoding Introns are removed
@@ -74,7 +70,7 @@ public class Transcriber
      *            The char in the string to replace
      * @param toReplaceWith
      *            The char to replace it with
-     * @return
+     * @return The string with replaced char
      */
     private static String replaceChar(String workingString, char toReplace,
             char toReplaceWith)
@@ -82,6 +78,13 @@ public class Transcriber
         return workingString.replace(toReplace, toReplaceWith);
     }
 
+    /**
+     * Takes an arraylist of strings and makes them into 1 string
+     * 
+     * @param toCombine
+     *            the arraylist that needs to be combined
+     * @return the combined string
+     */
     private static String ArrayLstToString(ArrayList<String> toCombine)
     {
         String combinedString;
@@ -92,6 +95,27 @@ public class Transcriber
             combinedString = combinedString + segment;
         }
         return combinedString;
+    }
+
+    /**
+     * Repeats a string multiple times
+     * 
+     * @param toRepeat
+     *            The string to repeat
+     * @param timesToRepeat
+     *            The number of times to repeat the string
+     * @return The repeated string
+     */
+    private static String repeatString(String toRepeat, int timesToRepeat)
+    {
+        int count;
+        String repeated = "";
+
+        for (count = 0; count < timesToRepeat; count++)
+        {
+            repeated += toRepeat;
+        }
+        return toRepeat;
     }
 
 }
