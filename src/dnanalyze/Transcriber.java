@@ -115,7 +115,7 @@ public class Transcriber
         {
             repeated += toRepeat;
         }
-        return repeated;
+        return toRepeat;
     }
 
 }
