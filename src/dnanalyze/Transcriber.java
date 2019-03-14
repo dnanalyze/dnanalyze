@@ -1,5 +1,7 @@
 package dnanalyze;
 
+import java.util.ArrayList;
+
 public class Transcriber
 {
     private String dnaString;
@@ -32,11 +34,35 @@ public class Transcriber
      *            A string of the DNA that needs to be transcribed
      * @return The transcribed DNA
      */
-    public String Transcribe(String dnaString)
+    public static String Transcribe(String dnaString)
     {
-        dnaString = replaceChar(dnaString, 'T', 'U');
+        String rnaString;
+        int aCount;
+        ArrayList<String> codingSegments;
 
-        return dnaString;
+        final int numberOfAsToAddToCap = 100;
+
+        // Step 1: Replace the T nucleotides with U
+        rnaString = replaceChar(dnaString, 'T', 'U');
+
+        // Step 2:
+
+        // Step 3: Add 1 G nucleotides to the beginning and many A's to the end
+        rnaString = "G" + rnaString;
+        for (aCount = 0; aCount < numberOfAsToAddToCap; aCount++)
+        {
+            rnaString = rnaString + "A";
+        }
+
+        // TODO
+        // Step 4: Noncoding Introns are removed
+        codingSegments = new ArrayList<>();
+
+        // Step 5: The remaining coding segments are joined together
+        rnaString = ArrayLstToString(codingSegments);
+
+        // Step 6: The mRNA can leave
+        return rnaString;
     }
 
     /**
@@ -50,9 +76,22 @@ public class Transcriber
      *            The char to replace it with
      * @return
      */
-    private String replaceChar(String workingString, char toReplace,
+    private static String replaceChar(String workingString, char toReplace,
             char toReplaceWith)
     {
-        return null;
+        return workingString.replace(toReplace, toReplaceWith);
     }
+
+    private static String ArrayLstToString(ArrayList<String> toCombine)
+    {
+        String combinedString;
+
+        combinedString = "";
+        for (String segment : toCombine)
+        {
+            combinedString = combinedString + segment;
+        }
+        return combinedString;
+    }
+
 }
