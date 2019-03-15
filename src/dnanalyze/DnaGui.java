@@ -31,12 +31,14 @@ public class DnaGui extends JFrame
         pack();
     }
 
-    //h
+    /*
+     * For testing
     public static void main(String args[])
     {
        DnaGui DNAGui = new DnaGui();
        DNAGui.setVisible(true);
     }
+    */
     
     private void createGUI()
     {
