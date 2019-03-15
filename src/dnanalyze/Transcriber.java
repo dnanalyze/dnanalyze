@@ -1,6 +1,9 @@
 package dnanalyze;
 
 import java.util.ArrayList;
+import java.lang.*;
+import java.io.*;
+import java.util.*;
 
 public class Transcriber
 {
@@ -8,7 +11,7 @@ public class Transcriber
 
     /**
      * Constructor
-     * 
+     *
      * @param dnaString
      *            A string of the DNA that needs to be transcribed
      */
@@ -19,7 +22,7 @@ public class Transcriber
 
     /**
      * Transcribes the DNA
-     * 
+     *
      * @return The class' DNA string transcribed
      */
     public String Transcribe()
@@ -29,7 +32,7 @@ public class Transcriber
 
     /**
      * Transcribes the DNA
-     * 
+     *
      * @param dnaString
      *            A string of the DNA that needs to be transcribed
      * @return The transcribed DNA
@@ -44,11 +47,15 @@ public class Transcriber
         // Step 1: Replace the T nucleotides with U
         rnaString = replaceChar(dnaString, 'T', 'U');
 
-        // TODO
-        // Step 2: Invert the DNA String
+
+        // Step 2: Invert the DNA String usinng String Builder to reverse string
+        StringBuilder rnaStringInvert = new StringBuilder();
+        rnaStringInvert.append(rnaString);
+        rnaStringInvert=rnaStringInvert.reverse();
+        rnaString =rnaStringInvert.toString();
 
         // Step 3: Add 1 G nucleotide to the beginning and many A's to the end
-        rnaString = "G" + rnaString + repeatString("A", numberOfAsToAddToCap);
+        rnaString = "G" + rnaString+ repeatString("A", numberOfAsToAddToCap);
 
         // TODO
         // Step 4: Noncoding Introns are removed (ONLY OCCURS IN EUKARYOTIC CELLS - NOT NEEDED FOR MVP)
@@ -63,7 +70,7 @@ public class Transcriber
 
     /**
      * Replaces all occurrences of one char with another in the string
-     * 
+     *
      * @param workingString
      *            The string to replace the char in
      * @param toReplace
@@ -80,7 +87,7 @@ public class Transcriber
 
     /**
      * Takes an arraylist of strings and makes them into 1 string
-     * 
+     *
      * @param toCombine
      *            the arraylist that needs to be combined
      * @return the combined string
@@ -99,7 +106,7 @@ public class Transcriber
 
     /**
      * Repeats a string multiple times
-     * 
+     *
      * @param toRepeat
      *            The string to repeat
      * @param timesToRepeat
