@@ -45,13 +45,13 @@ public class Transcriber
         rnaString = replaceChar(dnaString, 'T', 'U');
 
         // TODO
-        // Step 2:
+        // Step 2: Invert the DNA String
 
         // Step 3: Add 1 G nucleotide to the beginning and many A's to the end
         rnaString = "G" + rnaString + repeatString("A", numberOfAsToAddToCap);
 
         // TODO
-        // Step 4: Noncoding Introns are removed
+        // Step 4: Noncoding Introns are removed (ONLY OCCURS IN EUKARYOTIC CELLS - NOT NEEDED FOR MVP)
         codingSegments = new ArrayList<>();
 
         // Step 5: The remaining coding segments are joined together
