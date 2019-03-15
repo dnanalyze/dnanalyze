@@ -31,14 +31,14 @@ public class DnaGui extends JFrame
         pack();
     }
 
-    /*
-     * For testing
+    ///*
+    // * For testing
     public static void main(String args[])
     {
        DnaGui DNAGui = new DnaGui();
        DNAGui.setVisible(true);
     }
-    */
+    //*/
     
     private void createGUI()
     {
@@ -132,19 +132,30 @@ public class DnaGui extends JFrame
                   // display translation
                   if( radioButtonTranslation.isSelected() )
                   {
-                     // ADD TRANSLATION SEQUENCE FUNCTION CALL
+                     Transcriber transcribe = new Transcriber( DNASequence );
+                     String RNAString = transcribe.Transcribe();
+                     
+                     Translator translate = new Translator( RNAString );
+                     System.out.print( translate.toString() );
+                     translField.setText( translate.toString() );
                   }
                   
                   // display transcription
                   else if( radioButtonTranscription.isSelected() )
                   {
-                     // ADD TRANSLATION SEQUENCE FUNCTION CALL
+                     Transcriber transcribe = new Transcriber( DNASequence );
+                     transcField.setText( transcribe.Transcribe() );
                   }
                   
                   // display translation and transcription
                   else if( radioButtonBoth.isSelected() )
                   {
-                     // ADD TRANSLATION AND TRANSLATION SEQUENCE FUNCTION CALL
+                     Transcriber transcribe = new Transcriber( DNASequence );
+                     String RNAString = transcribe.Transcribe();
+                     transcField.setText( RNAString );
+                     
+                     Translator translate = new Translator( RNAString );
+                     translField.setText( translate.toString() );
                   }
                }
                
