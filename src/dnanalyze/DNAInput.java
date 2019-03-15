@@ -3,7 +3,7 @@ package dnanalyze;
 
 public class DNAInput
 {
-    /*
+    /**
      * Testing
     public static void main( String[] args )
     {

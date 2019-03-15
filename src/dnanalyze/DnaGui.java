@@ -31,6 +31,7 @@ public class DnaGui extends JFrame
         pack();
     }
 
+    //h
     public static void main(String args[])
     {
        DnaGui DNAGui = new DnaGui();
