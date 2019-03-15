@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Class for storing information for Codons used in Translation
+ * Class for storing information for Codons used in Translation Class
  */
 public class Codon {
 
