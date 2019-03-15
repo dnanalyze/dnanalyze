@@ -1,4 +1,4 @@
-package CS386;
+package dnanalyze;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,10 +10,10 @@ public class DnaGui extends JFrame
     private JButton addClass;
     private JTextField classField;
     private JLabel label;
-    private JLabel capLabel;
+    private JLabel translLabel;
     private JLabel transcLabel;
     private JTextField transcField;
-    private JTextField capField;
+    private JTextField translField;
     private JRadioButton radioButtonTranslation;
     private JRadioButton radioButtonTranscription;
     private JRadioButton radioButtonBoth;
@@ -65,11 +65,11 @@ public class DnaGui extends JFrame
         radioButtonBoth.setText("Both");
         
         // create Translation output text box
-        capLabel = new JLabel();
-        capLabel.setText("Translation: ");
-        capField = new JTextField();
-        capField.setPreferredSize(new Dimension(200, 30));
-        capField.setEditable(false);
+        translLabel = new JLabel();
+        translLabel.setText("Translation: ");
+        translField = new JTextField();
+        translField.setPreferredSize(new Dimension(200, 30));
+        translField.setEditable(false);
         
         // create Transcription output text box
         transcLabel = new JLabel();
@@ -96,8 +96,8 @@ public class DnaGui extends JFrame
         radioButtonGroup.add(radioButtonBoth);
         
         // group/add second text box
-        pane.add(capLabel);
-        pane.add(capField);
+        pane.add(translLabel);
+        pane.add(translField);
         
         // group/add third text box
         pane.add(transcLabel);
@@ -110,10 +110,67 @@ public class DnaGui extends JFrame
     private class addClassListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent ae) {
-            String courseCode = classField.getText();
+            DNAInput stringValidate = new DNAInput(); 
+            String DNASequence = classField.getText();
             
-            DnaGui.this.dispose();
-
+            // check for empty string
+            if( DNASequence.equals( "" ) )
+            {
+               translField.setText( "DNA Sequence empty, please enter text!" );
+               transcField.setText( "DNA Sequence empty, please enter text!" );
+            }
+            
+            // if not empty
+            else
+            {
+               // if valid string
+               if( stringValidate.validateDNAString( DNASequence ) )
+               {
+                  // display translation
+                  if( radioButtonTranslation.isSelected() )
+                  {
+                     // ADD TRANSLATION SEQUENCE FUNCTION CALL
+                  }
+                  
+                  // display transcription
+                  else if( radioButtonTranscription.isSelected() )
+                  {
+                     // ADD TRANSLATION SEQUENCE FUNCTION CALL
+                  }
+                  
+                  // display translation and transcription
+                  else if( radioButtonBoth.isSelected() )
+                  {
+                     // ADD TRANSLATION AND TRANSLATION SEQUENCE FUNCTION CALL
+                  }
+               }
+               
+               // if not valid string
+               else
+               {
+                  // display error text
+                  if( radioButtonTranslation.isSelected() )
+                  {
+                     translField.setText( "DNA Sequence invalid!" );
+                     transcField.setText( "" );
+                  }
+                  
+                  // display error text
+                  else if( radioButtonTranscription.isSelected() )
+                  {
+                     transcField.setText( "DNA Sequence invalid!" );
+                     translField.setText( "" );
+                  }
+                  
+                  // display error text
+                  else if( radioButtonBoth.isSelected() )
+                  {
+                     translField.setText( "DNA Sequence invalid!" );
+                     transcField.setText( "DNA Sequence invalid!" );
+                  }
+               }
+            }
+            
         }
     }
 }

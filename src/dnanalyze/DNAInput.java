@@ -1,8 +1,10 @@
-package CS386;
-import java.util.Scanner;  // Import the Scanner class
+package dnanalyze;
+//import java.util.Scanner;  // Import the Scanner class -- testing
 
 public class DNAInput
 {
+    /*
+     * Testing
     public static void main( String[] args )
     {
         String str = getDNAString();
@@ -22,16 +24,18 @@ public class DNAInput
         return DNAString;
     }
 
-    private static Boolean validateDNAString( String DNAString )
+    */
+
+    Boolean validateDNAString( String DNAString )
     {
         
         if( DNAString.matches( "([aAcCgGtT])+" ) )
         {
-            System.out.println( "String is valid" );
+            //System.out.println( "String is valid" );
             return true;
         }
         
-        System.out.println( "String is not valid" );
+        //System.out.println( "String is not valid" );
         return false;
     }
 
