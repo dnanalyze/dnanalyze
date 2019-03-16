@@ -85,12 +85,12 @@ public class DnaGui extends JFrame
         // create Sequence DNA button
         sequenceDNAButton = new JButton( "Sequence DNA");
         sequenceDNAButton.addActionListener( new sequenceDNAButtonListener());
-        sequenceDNAButton.setPreferredSize(new Dimension(300, 100));
+        sequenceDNAButton.setPreferredSize(new Dimension(150, 100));
         
         // create clear button
         clearButton = new JButton( "Clear");
         clearButton.addActionListener( new clearButtonListener());
-        clearButton.setPreferredSize(new Dimension(300, 100));
+        clearButton.setPreferredSize(new Dimension(150, 100));
         
         // group/add first text box
         pane.add(label);
@@ -125,9 +125,9 @@ public class DnaGui extends JFrame
           classField.setText( "" );
           transcField.setText( "" );
           translField.setText( "" );
-          radioButtonTranslation.setEnabled(false);
-          radioButtonTranscription.setEnabled(false);
-          radioButtonBoth.setEnabled(false);
+          radioButtonTranslation.setSelected(false);
+          radioButtonTranscription.setSelected(false);
+          radioButtonBoth.setSelected(false);
        }
     }
        
