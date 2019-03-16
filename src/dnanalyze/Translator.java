@@ -1,8 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * class to change RNA into an amino acid sequence
  */
+
 package dnanalyze;
 
 import java.util.ArrayList;
@@ -15,14 +14,24 @@ public class Translator
     private String start_codon = "AUG";
     private int total_codons;
     List<Codon> aminoAcidSequence;
-
+    
+    /**
+     * Constructor class
+     * @param RNA 
+     * the RNA string to be changed into amino acid sequence
+     */
     Translator(String RNA)
     {
         RNA = RNA.toUpperCase();
         RNA_sequence = RNA;
         aminoAcidSequence = new ArrayList<>();
     }
-
+    
+    /**
+     * function to find the start codon "aug" in the RNA string
+     * @return index of the first letter of the start codon
+     * or -1 on failure to find start codon
+     */
     private int findStart()
     {
         if (RNA_sequence.contains(start_codon))
@@ -33,7 +42,15 @@ public class Translator
         }
         return -1;
     }
-
+    
+    /**
+     * function to find if the current codon is one of the 3 
+     * stop codons
+     * 
+     * @param codon string containing a codon
+     * 
+     * @return returns ture if the codon is a stop codon false otherwise
+     */
     private Boolean isStopCodon(String codon)
     {
         if (codon.equals(stop_codons[0]) || codon.equals(stop_codons[1])
@@ -45,6 +62,11 @@ public class Translator
         return false;
     }
 
+    /**
+     * builds the amino acid list
+     * 
+     * @param start_index starting index of the RNA string
+     */
     private void buildSequence(int start_index)
     {
         String[] codon_array = findCodons(start_index);
@@ -58,6 +80,13 @@ public class Translator
 
     }
 
+    /**
+     * separates individual codons from the RNA string
+     * 
+     * @param start_index index of the first letter of the start codon
+     * 
+     * @return a string array contaning the individual codons
+     */
     private String[] findCodons(int start_index)
     {
         int working_index = start_index;
@@ -94,6 +123,9 @@ public class Translator
         return codon_array;
     }
 
+    /**
+     * main function called to start the translate process
+     */
     public void translateSequence()
     {
         int index;
@@ -110,6 +142,12 @@ public class Translator
 
     }
 
+    /**
+     * overridden toString method for formating amino acid sequence
+     * for display
+     * 
+     * @return 
+     */
     @Override
     public String toString()
     {
