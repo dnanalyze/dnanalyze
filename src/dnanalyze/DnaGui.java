@@ -7,7 +7,8 @@ import java.awt.event.ActionListener;
 
 public class DnaGui extends JFrame
 {
-    private JButton addClass;
+    private JButton sequenceDNAButton;
+    private JButton clearButton;
     private JTextField classField;
     private JLabel label;
     private JLabel translLabel;
@@ -23,7 +24,7 @@ public class DnaGui extends JFrame
     {
         createGUI();
 
-        setTitle("DNAnalyzer");
+        setTitle( "DNAnalyzer");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setPreferredSize(new Dimension(325, 300));
         setLocationRelativeTo(null);
@@ -43,48 +44,53 @@ public class DnaGui extends JFrame
     private void createGUI()
     {
         JPanel pane = new JPanel();
-        this.getContentPane().add(pane);
-        pane.setLayout(new FlowLayout(FlowLayout.LEFT));
+        this.getContentPane().add( pane );
+        pane.setLayout( new FlowLayout( FlowLayout.LEFT ) );
         
         // create first text box (input)
         label = new JLabel();
-        label.setText("DNA Sequence:");
+        label.setText( "DNA Sequence:" );
         classField = new JTextField();
-        classField.setPreferredSize(new Dimension(200, 30));
+        classField.setPreferredSize( new Dimension( 200, 30 ) );
         
         //create radio group
         radioButtonGroup = new ButtonGroup();
         
         //create Translation button
         radioButtonTranslation = new JRadioButton();
-        radioButtonTranslation.setText("Translation");
+        radioButtonTranslation.setText( "Translation" );
         
         //create Transcription button
         radioButtonTranscription = new JRadioButton();
-        radioButtonTranscription.setText("Transcription");
+        radioButtonTranscription.setText( "Transcription" );
         
         //create Both button
         radioButtonBoth = new JRadioButton();
-        radioButtonBoth.setText("Both");
+        radioButtonBoth.setText( "Both");
         
         // create Translation output text box
         translLabel = new JLabel();
-        translLabel.setText("Translation: ");
+        translLabel.setText( "Translation: ");
         translField = new JTextField();
         translField.setPreferredSize(new Dimension(200, 30));
         translField.setEditable(false);
         
         // create Transcription output text box
         transcLabel = new JLabel();
-        transcLabel.setText("Transcription: ");
+        transcLabel.setText( "Transcription: ");
         transcField = new JTextField();
         transcField.setPreferredSize(new Dimension(200, 30));
         transcField.setEditable(false);
         
         // create Sequence DNA button
-        addClass = new JButton("Sequence DNA");
-        addClass.addActionListener( new addClassListener());
-        addClass.setPreferredSize(new Dimension(300, 100));
+        sequenceDNAButton = new JButton( "Sequence DNA");
+        sequenceDNAButton.addActionListener( new sequenceDNAButtonListener());
+        sequenceDNAButton.setPreferredSize(new Dimension(300, 100));
+        
+        // create clear button
+        clearButton = new JButton( "Clear");
+        clearButton.addActionListener( new clearButtonListener());
+        clearButton.setPreferredSize(new Dimension(300, 100));
         
         // group/add first text box
         pane.add(label);
@@ -106,13 +112,30 @@ public class DnaGui extends JFrame
         pane.add(transcLabel);
         pane.add(transcField);
         
-        // group/add first button
-        pane.add(addClass);
+        // group/add buttons
+        pane.add(sequenceDNAButton);
+        pane.add(clearButton);
     }
-
-    private class addClassListener implements ActionListener {
+    
+    private class clearButtonListener implements ActionListener 
+    {
+       @Override
+       public void actionPerformed(ActionEvent ae) 
+       {
+          classField.setText( "" );
+          transcField.setText( "" );
+          translField.setText( "" );
+          radioButtonTranslation.setEnabled(false);
+          radioButtonTranscription.setEnabled(false);
+          radioButtonBoth.setEnabled(false);
+       }
+    }
+       
+    private class sequenceDNAButtonListener implements ActionListener 
+    {
         @Override
-        public void actionPerformed(ActionEvent ae) {
+        public void actionPerformed(ActionEvent ae) 
+        {
             DNAInput stringValidate = new DNAInput(); 
             String DNASequence = classField.getText();
             
@@ -132,17 +155,21 @@ public class DnaGui extends JFrame
                   // display translation
                   if( radioButtonTranslation.isSelected() )
                   {
+                     // transcribe sequence for translation
                      Transcriber transcribe = new Transcriber( DNASequence );
                      String RNAString = transcribe.Transcribe();
                      
+                     //translate sequence
                      Translator translate = new Translator( RNAString );
-                     System.out.print( translate.toString() );
-                     translField.setText( translate.toString() );
+                     translate.translateSequence();
+                     String translation = translate.toString();
+                     translField.setText( translation );
                   }
                   
                   // display transcription
                   else if( radioButtonTranscription.isSelected() )
                   {
+                     // transcribe sequence
                      Transcriber transcribe = new Transcriber( DNASequence );
                      transcField.setText( transcribe.Transcribe() );
                   }
@@ -150,12 +177,16 @@ public class DnaGui extends JFrame
                   // display translation and transcription
                   else if( radioButtonBoth.isSelected() )
                   {
+                     // transcribe sequence
                      Transcriber transcribe = new Transcriber( DNASequence );
                      String RNAString = transcribe.Transcribe();
                      transcField.setText( RNAString );
                      
+                     //translate sequence
                      Translator translate = new Translator( RNAString );
-                     translField.setText( translate.toString() );
+                     translate.translateSequence();
+                     String translation = translate.toString();
+                     translField.setText( translation );
                   }
                }
                
