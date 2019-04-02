@@ -54,11 +54,13 @@ public class Transcriber
         rnaString = replaceChar(dnaString, 'T', 'U');
 
         // Step 2: Invert the DNA String using String Builder to reverse string
-        StringBuilder rnaStringInvert = new StringBuilder();
+        /*
+		StringBuilder rnaStringInvert = new StringBuilder();
         rnaStringInvert.append(rnaString);
         rnaStringInvert = rnaStringInvert.reverse();
         rnaString = rnaStringInvert.toString();
-
+		*/	
+		
         // Step 3: Add 1 G nucleotide to the beginning and many A's to the end
         rnaString = "G" + rnaString + repeatString("A", numberOfAsToAddToCap);
 
