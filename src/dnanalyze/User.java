@@ -7,4 +7,16 @@ public abstract class User
       DnaGui DNAGui = new DnaGui();
       DNAGui.setVisible(true);
    }
+
+   String name;
+
+    int UID;
+
+    public User()
+    {
+        this.name = "";
+        UID = -1;
+    }
+
+    protected abstract void getInfoFromDB();
 }
