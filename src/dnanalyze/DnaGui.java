@@ -9,50 +9,84 @@ public class DnaGui extends JFrame
 {
     private JButton sequenceDNAButton;
     private JButton clearButton;
-    private JTextField classField;
+    private JTextArea classField;
     private JLabel label;
     private JLabel translLabel;
     private JLabel transcLabel;
-    private JTextField transcField;
-    private JTextField translField;
+    private JTextArea transcField;
+    private JTextArea translField;
     private JRadioButton radioButtonTranslation;
     private JRadioButton radioButtonTranscription;
     private JRadioButton radioButtonBoth;
     private ButtonGroup radioButtonGroup;
+    private JScrollPane sequenceScroll;
+    private JScrollPane translateScroll;
+    private JScrollPane transcribeScroll;
     
     public DnaGui()
     {
         createGUI();
 
-        setTitle( "DNAnalyzer");
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setPreferredSize(new Dimension(325, 300));
-        setLocationRelativeTo(null);
-        setResizable(false);
+        setTitle( "DNAnalyzer" );
+        setDefaultCloseOperation( DISPOSE_ON_CLOSE );
+        setPreferredSize( new Dimension( 325, 325 ) );
+        setLocationRelativeTo( null );
+        setResizable( false );
+        setVisible( true );
         pack();
     }
 
     /*
      * For testing
-    public static void main(String args[])
+    public static void main( String args[] )
     {
        DnaGui DNAGui = new DnaGui();
-       DNAGui.setVisible(true);
     }
     */
     
     private void createGUI()
     {
+        
         JPanel pane = new JPanel();
         this.getContentPane().add( pane );
         pane.setLayout( new FlowLayout( FlowLayout.LEFT ) );
         
-        // create first text box (input)
+        // create first text box ( input )
         label = new JLabel();
         label.setText( "DNA Sequence:" );
-        classField = new JTextField();
-        classField.setPreferredSize( new Dimension( 200, 30 ) );
+        classField = new JTextArea();
+        classField.setLineWrap( true );
+        sequenceScroll = new JScrollPane( classField, 
+              JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+              JScrollPane.HORIZONTAL_SCROLLBAR_NEVER );
+        sequenceScroll.setMinimumSize( new Dimension( 200, 50 ) );
+        sequenceScroll.setPreferredSize( new Dimension( 200, 50 ) );
         
+        // create Translation output text box
+        translLabel = new JLabel();
+        translLabel.setText( "Translation: " );
+        translField = new JTextArea();
+        translField.setLineWrap( true );
+        translField.setEditable( false );
+        translateScroll = new JScrollPane( translField, 
+              JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+              JScrollPane.HORIZONTAL_SCROLLBAR_NEVER );
+        translateScroll.setMinimumSize( new Dimension( 200, 50 ) );
+        translateScroll.setPreferredSize( new Dimension( 200, 50 ) );
+        
+        // create Transcription output text box
+        transcLabel = new JLabel();
+        transcLabel.setText( "Transcription: " );
+        transcField = new JTextArea();
+        transcField.setLineWrap( true );
+        transcField.setEditable( false );
+        transcribeScroll = new JScrollPane( transcField, 
+              JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+              JScrollPane.HORIZONTAL_SCROLLBAR_NEVER );
+        transcribeScroll.setMinimumSize( new Dimension( 200, 50 ) );
+        transcribeScroll.setPreferredSize( new Dimension( 200, 50 ) );
+        
+
         //create radio group
         radioButtonGroup = new ButtonGroup();
         
@@ -66,75 +100,63 @@ public class DnaGui extends JFrame
         
         //create Both button
         radioButtonBoth = new JRadioButton();
-        radioButtonBoth.setText( "Both");
+        radioButtonBoth.setText( "Both" );
         
-        // create Translation output text box
-        translLabel = new JLabel();
-        translLabel.setText( "Translation: ");
-        translField = new JTextField();
-        translField.setPreferredSize(new Dimension(200, 30));
-        translField.setEditable(false);
-        
-        // create Transcription output text box
-        transcLabel = new JLabel();
-        transcLabel.setText( "Transcription: ");
-        transcField = new JTextField();
-        transcField.setPreferredSize(new Dimension(200, 30));
-        transcField.setEditable(false);
         
         // create Sequence DNA button
-        sequenceDNAButton = new JButton( "Sequence DNA");
-        sequenceDNAButton.addActionListener( new sequenceDNAButtonListener());
-        sequenceDNAButton.setPreferredSize(new Dimension(150, 100));
+        sequenceDNAButton = new JButton( "Sequence DNA" );
+        sequenceDNAButton.addActionListener( new sequenceDNAButtonListener() );
+        sequenceDNAButton.setPreferredSize( new Dimension( 150, 75 ) );
         
         // create clear button
-        clearButton = new JButton( "Clear");
-        clearButton.addActionListener( new clearButtonListener());
-        clearButton.setPreferredSize(new Dimension(150, 100));
+        clearButton = new JButton( "Clear" );
+        clearButton.addActionListener( new clearButtonListener() );
+        clearButton.setPreferredSize( new Dimension( 150, 75 ) );
+        
         
         // group/add first text box
-        pane.add(label);
-        pane.add(classField);
+        pane.add( label );
+        pane.add( sequenceScroll );
         
         // group/add first text box
-        pane.add(radioButtonTranslation);
-        pane.add(radioButtonTranscription);
-        pane.add(radioButtonBoth);
-        radioButtonGroup.add(radioButtonTranslation);
-        radioButtonGroup.add(radioButtonTranscription);
-        radioButtonGroup.add(radioButtonBoth);
+        pane.add( radioButtonTranslation );
+        pane.add( radioButtonTranscription );
+        pane.add( radioButtonBoth );
+        radioButtonGroup.add( radioButtonTranslation );
+        radioButtonGroup.add( radioButtonTranscription );
+        radioButtonGroup.add( radioButtonBoth );
         
         // group/add second text box
-        pane.add(translLabel);
-        pane.add(translField);
+        pane.add( translLabel );
+        pane.add( translateScroll );
         
         // group/add third text box
-        pane.add(transcLabel);
-        pane.add(transcField);
+        pane.add( transcLabel );
+        pane.add( transcribeScroll );
         
         // group/add buttons
-        pane.add(sequenceDNAButton);
-        pane.add(clearButton);
+        pane.add( sequenceDNAButton );
+        pane.add( clearButton );
     }
     
     private class clearButtonListener implements ActionListener 
     {
        @Override
-       public void actionPerformed(ActionEvent ae) 
+       public void actionPerformed( ActionEvent ae ) 
        {
           classField.setText( "" );
           transcField.setText( "" );
           translField.setText( "" );
-          radioButtonTranslation.setSelected(false);
-          radioButtonTranscription.setSelected(false);
-          radioButtonBoth.setSelected(false);
+          radioButtonTranslation.setSelected( false );
+          radioButtonTranscription.setSelected( false );
+          radioButtonBoth.setSelected( false );
        }
     }
        
     private class sequenceDNAButtonListener implements ActionListener 
     {
         @Override
-        public void actionPerformed(ActionEvent ae) 
+        public void actionPerformed( ActionEvent ae ) 
         {
             DNAInput stringValidate = new DNAInput(); 
             String DNASequence = classField.getText();
