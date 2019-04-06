@@ -26,7 +26,7 @@ public class DNAInput
 
     */
 
-    Boolean validateDNAString( String DNAString )
+    public Boolean validateDNAString( String DNAString )
     {
         
         if( DNAString.matches( "([aAcCgGtT])+" ) )
