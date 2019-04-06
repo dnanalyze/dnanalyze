@@ -7,21 +7,22 @@ import java.awt.event.ActionListener;
 
 public class DnaGui extends JFrame
 {
-    private JButton sequenceDNAButton;
-    private JButton clearButton;
-    private JTextArea classField;
     private JLabel label;
     private JLabel translLabel;
     private JLabel transcLabel;
+    private JTextArea classField;
     private JTextArea transcField;
     private JTextArea translField;
-    private JRadioButton radioButtonTranslation;
-    private JRadioButton radioButtonTranscription;
-    private JRadioButton radioButtonBoth;
-    private ButtonGroup radioButtonGroup;
     private JScrollPane sequenceScroll;
     private JScrollPane translateScroll;
     private JScrollPane transcribeScroll;
+    private JButton clearButton;
+    private JButton sequenceDNAButton;
+    private ButtonGroup radioButtonGroup;
+    private JRadioButton radioButtonBoth;
+    private JRadioButton radioButtonTranslation;
+    private JRadioButton radioButtonTranscription;
+
     
     public DnaGui()
     {
@@ -139,6 +140,7 @@ public class DnaGui extends JFrame
         pane.add( clearButton );
     }
     
+    
     private class clearButtonListener implements ActionListener 
     {
        @Override
@@ -153,6 +155,7 @@ public class DnaGui extends JFrame
        }
     }
        
+    
     private class sequenceDNAButtonListener implements ActionListener 
     {
         @Override
