@@ -139,3 +139,39 @@ public class Transcriber
     }
 
 }
+
+
+    public static String Transcribe(String dnaString, boolean eukCell)
+    {
+        String rnaString;
+        ArrayList<String> codingSegments;
+
+        final int numberOfAsToAddToCap = 100;
+
+
+        // Step 1: Replace the T nucleotides with U
+        rnaString = replaceChar(dnaString, 'T', 'U');
+
+
+        // Step 2: Convert to rnaString
+        char[] templeCharacterHolder= rnaString.toCharArray();
+        String newRNAString = "";
+        for (Char dnaLetter : templeCharacterHolder)
+        {
+            if( dnaLetter == 'C')
+            {
+                newRNAString += 'G';
+            }
+            if( dnaLetter == 'G')
+            {
+                newRNAString += 'C';
+            }
+            if( dnaLetter == 'A')
+            {
+                newRNAString= 'U';
+            }
+            if(dnaLetter == 'T')
+            {
+                newRNAString= 'A';
+            }
+        }
