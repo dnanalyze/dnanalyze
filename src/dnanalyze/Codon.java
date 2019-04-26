@@ -125,6 +125,15 @@ public class Codon
     }
 
     /**
+     * Get method for original codon sequence
+     *
+     * @return String representation of original codon sequence
+     */
+    public String getCodon() {
+        return codon;
+    }
+
+    /**
      * Gets the amino acid
      *
      * @return String representation of the amino acid

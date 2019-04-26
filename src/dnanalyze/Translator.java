@@ -13,14 +13,14 @@ public class Translator
     private String[] stop_codons = new String[] { "UAA", "UAG", "UGA" };
     private String start_codon = "AUG";
     private int total_codons;
-    List<Codon> aminoAcidSequence;
+    public List<Codon> aminoAcidSequence;
     
     /**
      * Constructor class
      * @param RNA 
      * the RNA string to be changed into amino acid sequence
      */
-    Translator(String RNA)
+    public Translator(String RNA)
     {
         RNA = RNA.toUpperCase();
         RNA_sequence = RNA;
@@ -32,7 +32,7 @@ public class Translator
      * @return index of the first letter of the start codon
      * or -1 on failure to find start codon
      */
-    private int findStart()
+    public int findStart()
     {
         if (RNA_sequence.contains(start_codon))
         {
@@ -53,13 +53,8 @@ public class Translator
      */
     private Boolean isStopCodon(String codon)
     {
-        if (codon.equals(stop_codons[0]) || codon.equals(stop_codons[1])
-                || codon.equals(stop_codons[2]))
-        {
-            return true;
-        }
-
-        return false;
+        return (codon.equals(stop_codons[0]) || codon.equals(stop_codons[1])
+                || codon.equals(stop_codons[2]));
     }
 
     /**
@@ -69,7 +64,7 @@ public class Translator
      */
     private void buildSequence(int start_index)
     {
-        String[] codon_array = findCodons(start_index);
+        String[] codon_array = buildCodonArray(start_index);
         int index;
 
         for (index = 0; index < total_codons; index++)
@@ -87,7 +82,7 @@ public class Translator
      * 
      * @return a string array contaning the individual codons
      */
-    private String[] findCodons(int start_index)
+    private String[] buildCodonArray (int start_index)
     {
         int working_index = start_index;
         int length = RNA_sequence.length() - start_index;
@@ -146,7 +141,7 @@ public class Translator
      * overridden toString method for formating amino acid sequence
      * for display
      * 
-     * @return 
+     * @return String representation of Amino Acid sequence
      */
     @Override
     public String toString()
