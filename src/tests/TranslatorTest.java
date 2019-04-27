@@ -22,7 +22,7 @@ public class TranslatorTest {
 
         //Assert Statements
         assertEquals( testTranslator1.findStart() , 0 );
-        assertEquals( testTranslator1.findStart() , -1 );
+        assertEquals( testTranslator2.findStart() , -1 );
     }
 
     @Test
@@ -34,7 +34,7 @@ public class TranslatorTest {
         testTranslator2.translateSequence();
         List<Codon> testList1 = testTranslator1.aminoAcidSequence;
         String [] testArr1 = testList1.toArray( new String [testList1.size()]);
-        List<Codon> testList2 = testTranslator1.aminoAcidSequence;
+        List<Codon> testList2 = testTranslator2.aminoAcidSequence;
         String [] testArr2 = testList2.toArray( new String [testList2.size()]);
         //Dummy Arrays
         String[] dummyArr1 = new String[3];
