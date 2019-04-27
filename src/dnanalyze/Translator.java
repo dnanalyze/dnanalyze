@@ -13,14 +13,14 @@ public class Translator
     private String[] stop_codons = new String[] { "UAA", "UAG", "UGA" };
     private String start_codon = "AUG";
     private int total_codons;
-    List<Codon> aminoAcidSequence;
+    public List<Codon> aminoAcidSequence;
     
     /**
      * Constructor class
      * @param RNA 
      * the RNA string to be changed into amino acid sequence
      */
-    Translator(String RNA)
+    public Translator(String RNA)
     {
         RNA = RNA.toUpperCase();
         RNA_sequence = RNA;
