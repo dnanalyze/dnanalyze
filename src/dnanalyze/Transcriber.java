@@ -60,6 +60,8 @@ public class Transcriber
         rnaStringInvert = rnaStringInvert.reverse();
         rnaString = rnaStringInvert.toString();
 		*/	
+        
+        
 		
         // Step 3: Add 1 G nucleotide to the beginning and many A's to the end
         rnaString = "G" + rnaString + repeatString("A", numberOfAsToAddToCap);
@@ -73,7 +75,7 @@ public class Transcriber
             // Step 5: The remaining coding segments are joined together
             rnaString = ArrayLstToString(codingSegments);
         }
-
+        System.out.println(rnaString);
         // Step 6: The mRNA can leave
         return rnaString;
     }
