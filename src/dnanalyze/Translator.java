@@ -20,7 +20,7 @@ public class Translator
      * @param RNA 
      * the RNA string to be changed into amino acid sequence
      */
-    Translator(String RNA)
+    public Translator(String RNA)
     {
         RNA = RNA.toUpperCase();
         RNA_sequence = RNA;
@@ -32,7 +32,7 @@ public class Translator
      * @return index of the first letter of the start codon
      * or -1 on failure to find start codon
      */
-    private int findStart()
+    public int findStart()
     {
         if (RNA_sequence.contains(start_codon))
         {

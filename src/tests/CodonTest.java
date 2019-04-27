@@ -26,7 +26,7 @@ public class CodonTest {
 
         //assert statements
         assertTrue( testCodon1.findAminoAcid().equals("Methionine") );
-        assertTrue( testCodon1.findAminoAcid().equals("Tyrosine") );
-        assertTrue( testCodon1.findAminoAcid().equals("Leucine") );
+        assertTrue( testCodon2.findAminoAcid().equals("Tyrosine") );
+        assertTrue( testCodon3.findAminoAcid().equals("Leucine") );
     }
 }
