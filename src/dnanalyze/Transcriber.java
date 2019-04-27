@@ -60,6 +60,8 @@ public class Transcriber
         rnaStringInvert = rnaStringInvert.reverse();
         rnaString = rnaStringInvert.toString();
 		*/	
+        
+        
 		
         // Step 3: Add 1 G nucleotide to the beginning and many A's to the end
         rnaString = "G" + rnaString + repeatString("A", numberOfAsToAddToCap);
@@ -73,7 +75,7 @@ public class Transcriber
             // Step 5: The remaining coding segments are joined together
             rnaString = ArrayLstToString(codingSegments);
         }
-
+        System.out.println(rnaString);
         // Step 6: The mRNA can leave
         return rnaString;
     }
@@ -139,39 +141,3 @@ public class Transcriber
     }
 
 }
-
-
-    public static String Transcribe(String dnaString, boolean eukCell)
-    {
-        String rnaString;
-        ArrayList<String> codingSegments;
-
-        final int numberOfAsToAddToCap = 100;
-
-
-        // Step 1: Replace the T nucleotides with U
-        rnaString = replaceChar(dnaString, 'T', 'U');
-
-
-        // Step 2: Convert to rnaString
-        char[] templeCharacterHolder= rnaString.toCharArray();
-        String newRNAString = "";
-        for (Char dnaLetter : templeCharacterHolder)
-        {
-            if( dnaLetter == 'C')
-            {
-                newRNAString += 'G';
-            }
-            if( dnaLetter == 'G')
-            {
-                newRNAString += 'C';
-            }
-            if( dnaLetter == 'A')
-            {
-                newRNAString= 'U';
-            }
-            if(dnaLetter == 'T')
-            {
-                newRNAString= 'A';
-            }
-        }
